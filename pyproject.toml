@@ -1,0 +1,46 @@
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
+[tool.poetry]
+authors = ["Matthieu Gallet <github@19pouces.net>"]
+classifiers = [
+  'Development Status :: 5 - Production/Stable',
+  'Operating System :: MacOS :: MacOS X',
+  'Operating System :: POSIX :: BSD',
+  'Operating System :: POSIX :: Linux',
+  'Operating System :: Unix',
+  'License :: OSI Approved :: CEA CNRS Inria Logiciel Libre License, version 2.1 (CeCILL-2.1)',
+  'Programming Language :: Python :: 3',
+  'Programming Language :: Python :: 3 :: Only',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: 3.12',
+  'Programming Language :: Python :: 3.13'
+]
+description = "Write .NFO files and download poster/backdrop images from a Plex movie library."
+documentation = 'https://github.com/d9pouces/plex2nfo'
+license = "CeCILL-B"
+maintainers = ["Matthieu Gallet <github@19pouces.net>"]
+name = "plex2nfo"
+packages = [{include = "plex2nfo"}]
+readme = "README.md"
+repository = 'https://github.com/d9pouces/plex2nfo'
+version = "1.0.0"
+
+[tool.poetry.dependencies]
+plexapi = "^4.16.1"
+python = "^3.9"
+requests = "^2.31.0"
+systemlogger = "^0.2.2"
+termcolor = "^3.0.1"
+tqdm = "^4.67.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+pytest = "^8.3.5"
+pytest-cov = "^6.1.1"
+
+[tool.poetry.scripts]
+plex-2-nfo = 'plex2nfo.cli:main'
