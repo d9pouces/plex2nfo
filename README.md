@@ -13,7 +13,7 @@ installation
 ------------
 
 ```bash
-pip install plex2nfo
+python3 -m pip install plex2nfo
 
 ```
 
@@ -21,7 +21,7 @@ Usage
 -----
 
 ```bash
-plex2nfo http://localhost:32400/ <plex-token> --section <Section> [--dry-run] --volume /local/volume/Movies:/data/Movies
+python3 -m plex2nfo http://localhost:32400/ <plex-token> --section <Section> [--dry-run] --volume /local/volume/Movies:/data/Movies
 ```
 
 The `--volume` argument is required when the Plex server is running in a Docker container and the NFO files should be written to the host system.
