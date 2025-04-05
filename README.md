@@ -13,8 +13,19 @@ installation
 ------------
 
 ```bash
-python3 -m pip install plex2nfo
+python3 -m pip install --user plex2nfo
+```
+You should also consider to use pipx to install plex2nfo, so that it does not interfere with your system Python installation.
 
+```bash
+sudo apt install pipx
+pipx install plex2nfo
+```
+
+Another option is to use the Docker image:
+
+```bash
+docker run --rm d9pouces/plex2nfo:latest --help
 ```
 
 Usage

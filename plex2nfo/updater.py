@@ -7,12 +7,14 @@ from xml.etree import ElementTree as ETr
 import requests
 import tqdm
 from plexapi.base import Playable
+from plexapi.exceptions import NotFound, Unauthorized
 from plexapi.media import Image
 from plexapi.server import PlexServer
 from plexapi.video import Episode, Movie
+from requests import RequestException
 from systemlogger import getLogger
 
-logger = getLogger("plex2nfo")
+logger = getLogger(name="plex2nfo", extra_tags={"application_fqdn": "system"})
 
 
 class PlexServerUpdater(PlexServer):
@@ -25,7 +27,17 @@ class PlexServerUpdater(PlexServer):
         verbose: bool = False,
         quiet: bool = False,
     ):
-        super().__init__(plex_url, plex_token)
+        """Initialize the PlexServerUpdater."""
+        self.initialized = False
+        try:
+            super().__init__(plex_url, plex_token)
+        except Unauthorized:
+            self.show_msg("Invalid credential", level=logging.ERROR)
+            return
+        except RequestException:
+            self.show_msg(f"Unable to connect to {plex_url}", level=logging.ERROR)
+            return
+        self.initialized = True
         self.volume_mapping: list[tuple[str, str]] = []
         for volume in volumes:
             local_path, plex_path = volume.split(":")
@@ -39,13 +51,20 @@ class PlexServerUpdater(PlexServer):
 
     def update_sections(self, sections: list[str] = None):
         """Update the required sections of the Plex server."""
+        if not self.initialized:
+            self.show_msg("Not connected to the Plex server", level=logging.ERROR)
+            return
         if not sections:
             sections = [section.title for section in self.library.sections()]
         for section_name in sections:
             self.update_section(section_name)
 
     def update_section(self, section_name):
-        section = self.library.section(section_name)
+        try:
+            section = self.library.section(section_name)
+        except NotFound:
+            self.show_msg(f"Section {section_name} not found", level=logging.ERROR)
+            return
         self.show_msg(f"Updating section {section_name}")
         for item in tqdm.tqdm(section.all(), disable=self.verbose or self.quiet):
             self.update_item(item)
