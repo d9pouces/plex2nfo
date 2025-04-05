@@ -713,8 +713,8 @@ EXPECTED_NFO = """<movie>
   </actors>
   <country>United Kingdom</country>
   <country>United States of America</country>
-  <dateadded>2025-04-05 12:05:17</dateadded>
-  <lastplayed>2022-02-24 22:15:06</lastplayed>
+  <dateadded>2025-04-05 10:05:17</dateadded>
+  <lastplayed>2022-02-24 21:15:06</lastplayed>
   <originalTitle>The King's Man</originalTitle>
   <playcount>1</playcount>
   <watched>true</watched>
