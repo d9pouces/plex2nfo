@@ -13,8 +13,6 @@ classifiers = [
   'License :: OSI Approved :: CEA CNRS Inria Logiciel Libre License, version 2.1 (CeCILL-2.1)',
   'Programming Language :: Python :: 3',
   'Programming Language :: Python :: 3 :: Only',
-  'Programming Language :: Python :: 3.9',
-  'Programming Language :: Python :: 3.10',
   'Programming Language :: Python :: 3.11',
   'Programming Language :: Python :: 3.12',
   'Programming Language :: Python :: 3.13'
@@ -31,7 +29,7 @@ version = "1.0.0"
 
 [tool.poetry.dependencies]
 plexapi = "^4.16.1"
-python = "^3.9"
+python = "^3.11"
 requests = "^2.31.0"
 systemlogger = "^0.2.2"
 termcolor = "^3.0.1"
