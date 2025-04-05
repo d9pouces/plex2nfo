@@ -1,6 +1,7 @@
 import logging
 import os
 import pathlib
+from datetime import UTC
 from xml.etree import ElementTree as ETr
 
 import requests
@@ -69,13 +70,13 @@ class PlexServerUpdater(PlexServer):
         for country in movie.countries:
             ETr.SubElement(root, "country").text = country.tag
         if movie.addedAt:
-            ETr.SubElement(root, "dateadded").text = movie.addedAt.strftime(
-                "%Y-%m-%d %H:%M:%S"
-            )
+            ETr.SubElement(root, "dateadded").text = movie.addedAt.astimezone(
+                tz=UTC
+            ).strftime("%Y-%m-%d %H:%M:%S")
         if movie.lastViewedAt:
-            ETr.SubElement(root, "lastplayed").text = movie.lastViewedAt.strftime(
-                "%Y-%m-%d %H:%M:%S"
-            )
+            ETr.SubElement(root, "lastplayed").text = movie.lastViewedAt.astimezone(
+                tz=UTC
+            ).strftime("%Y-%m-%d %H:%M:%S")
         if movie.originalTitle:
             ETr.SubElement(root, "originalTitle").text = movie.originalTitle
         if movie.viewCount:
