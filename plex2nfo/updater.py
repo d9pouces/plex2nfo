@@ -81,6 +81,7 @@ class PlexServerUpdater(PlexServer):
             ETr.SubElement(root, "originalTitle").text = movie.originalTitle
         if movie.viewCount:
             ETr.SubElement(root, "playcount").text = str(movie.viewCount)
+        if movie.viewCount or movie.lastViewedAt:
             ETr.SubElement(root, "watched").text = "true"
         if movie.summary:
             ETr.SubElement(root, "plot").text = movie.summary
