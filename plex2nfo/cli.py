@@ -28,6 +28,13 @@ def main(argv=None):
         help="Disable the progress bar.",
     )
     parser.add_argument(
+        "--overwrite-picture",
+        "-W",
+        action="store_true",
+        default=False,
+        help="Overwrite existing pictures in directories.",
+    )
+    parser.add_argument(
         "-s",
         "--section",
         action="append",
@@ -51,5 +58,11 @@ def main(argv=None):
     verbose = args.verbose
     quiet = args.quiet
     PlexServerUpdater(
-        plex_url, plex_token, volumes, dry_run=dry_run, verbose=verbose, quiet=quiet
+        plex_url,
+        plex_token,
+        volumes,
+        dry_run=dry_run,
+        verbose=verbose,
+        quiet=quiet,
+        overwrite_picture=args.overwrite_picture,
     ).update_sections(sections=sections)

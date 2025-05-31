@@ -32,11 +32,15 @@ Usage
 -----
 
 ```bash
-python3 -m plex2nfo http://localhost:32400/ <plex-token> --section <Section> [--dry-run] --volume /local/volume/Movies:/data/Movies
+python3 -m plex2nfo http://localhost:32400/ <plex-token> --section <Section> [--dry-run] --volume /local/volume/Movies:/data/Movies --overwrite-picture
+```
+If you installed plex2nfo with pipx, you can run it directly:
+```bash
+plex-2-nfo http://localhost:32400/ <plex-token> --section <Section> [--dry-run] --volume /local/volume/Movies:/data/Movies --overwrite-picture
 ```
 
 The `--volume` argument is required when the Plex server is running in a Docker container and the NFO files should be written to the host system.
 The path `/local/volume/Movies` should be replaced with the path to the movie library on the host system.
 The path `/data/Movies` should be replaced with the path to the movie library in the Docker container.
 
-Only Movies are supported, not TV shows.
+Only Movies are currently supported, not TV shows.

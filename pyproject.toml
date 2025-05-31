@@ -15,7 +15,8 @@ classifiers = [
   'Programming Language :: Python :: 3 :: Only',
   'Programming Language :: Python :: 3.11',
   'Programming Language :: Python :: 3.12',
-  'Programming Language :: Python :: 3.13'
+  'Programming Language :: Python :: 3.13',
+  'Programming Language :: Python :: 3.14'
 ]
 description = "Write .NFO files and download poster/backdrop images from a Plex movie library."
 documentation = 'https://github.com/d9pouces/plex2nfo'
@@ -25,7 +26,7 @@ name = "plex2nfo"
 packages = [{include = "plex2nfo"}]
 readme = "README.md"
 repository = 'https://github.com/d9pouces/plex2nfo'
-version = "1.0.3"
+version = "1.0.4"
 
 [tool.poetry.dependencies]
 plexapi = "^4.16.1"

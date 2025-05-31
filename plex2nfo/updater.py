@@ -26,6 +26,7 @@ class PlexServerUpdater(PlexServer):
         dry_run: bool = False,
         verbose: bool = False,
         quiet: bool = False,
+        overwrite_picture: bool = False,
     ):
         """Initialize the PlexServerUpdater."""
         self.initialized = False
@@ -48,6 +49,7 @@ class PlexServerUpdater(PlexServer):
         self.dry_run = dry_run
         self.verbose = verbose
         self.quiet = quiet
+        self.overwrite_picture = overwrite_picture
 
     def update_sections(self, sections: list[str] = None):
         """Update the required sections of the Plex server."""
@@ -227,7 +229,9 @@ class PlexServerUpdater(PlexServer):
                     os.makedirs(
                         self.map_plex_path_to_local(movie_directory), exist_ok=True
                     )
-                if not self.dry_run and not os.path.exists(local_path):
+                if not self.dry_run and (
+                    self.overwrite_picture or not os.path.exists(local_path)
+                ):
                     with open(local_path, "wb") as fd:
                         for chunk in r.iter_content(1024):
                             fd.write(chunk)
